@@ -25,6 +25,7 @@ class ReminderViewController: UITableViewController {
         items.append(item1)
     }
 
+    // MARK: TableView Delegate Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -46,6 +47,12 @@ class ReminderViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        items.remove(at: indexPath.row)
+        let indexPaths = [indexPath]
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+    
     func configureCheckMark(for cell: UITableViewCell, at indexPath: IndexPath) {
         let item = items[indexPath.row]
         if item.checked {
@@ -55,6 +62,7 @@ class ReminderViewController: UITableViewController {
         }
     }
     
+    // MARK: Functionality
     @IBAction func addItem() {
         let newRowIndex = items.count
         let item = ReminderItem()
