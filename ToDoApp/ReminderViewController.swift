@@ -8,7 +8,17 @@
 
 import UIKit
 
-class ReminderViewController: UITableViewController {
+class ReminderViewController: UITableViewController, ItemDetailViewControllerDelegate {
+    
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ReminderItem) {
+        navigationController?.popViewController(animated: true)
+        
+    }
+    
     
     var items = [ReminderItem]()
 
@@ -72,6 +82,13 @@ class ReminderViewController: UITableViewController {
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+            let controller = segue.destination as! ItemDetailViewController
+            controller.delegate = self
+        }
     }
 
 }
