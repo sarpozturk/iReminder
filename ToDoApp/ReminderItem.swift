@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ReminderItem {
+class ReminderItem: NSObject {
     var text = ""
     var checked = false
     

@@ -11,6 +11,7 @@ import UIKit
 protocol ItemDetailViewControllerDelegate: class {
     func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ReminderItem)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ReminderItem)
 }
 
 class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
@@ -19,12 +20,20 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
+    var itemToEdit: ReminderItem?
+    
     weak var delegate: ItemDetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.delegate = self
         textField.becomeFirstResponder()
+        
+        if let itemToEdit = itemToEdit {
+            navigationItem.title = "Edit Item"
+            textField.text = itemToEdit.text
+            doneButton.isEnabled = true
+        }
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -47,13 +56,17 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @IBAction func cancel() {
-        print("cancell")
         delegate?.itemDetailViewControllerDidCancel(self)
     }
 
     @IBAction func done() {
-        let item = ReminderItem()
-        item.text = textField.text!
-        delegate?.itemDetailViewController(self, didFinishAdding: item)
+        if let item = itemToEdit {
+            item.text = textField.text!
+            delegate?.itemDetailViewController(self, didFinishEditing: item)
+        } else {
+            let item = ReminderItem()
+            item.text = textField.text!
+            delegate?.itemDetailViewController(self, didFinishAdding: item)
+        }
     }
 }
