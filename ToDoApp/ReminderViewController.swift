@@ -16,7 +16,11 @@ class ReminderViewController: UITableViewController, ItemDetailViewControllerDel
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ReminderItem) {
         navigationController?.popViewController(animated: true)
-        
+        let newRowIndex = items.count
+        items.append(item)
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
     
@@ -70,18 +74,6 @@ class ReminderViewController: UITableViewController, ItemDetailViewControllerDel
         } else {
             cell.accessoryType = .none
         }
-    }
-    
-    // MARK: Functionality
-    @IBAction func addItem() {
-        let newRowIndex = items.count
-        let item = ReminderItem()
-        item.text = "new item"
-        items.append(item)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
