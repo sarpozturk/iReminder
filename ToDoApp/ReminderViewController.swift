@@ -21,6 +21,7 @@ class ReminderViewController: UITableViewController, ItemDetailViewControllerDel
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
+        saveReminderItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ReminderItem) {
@@ -33,21 +34,14 @@ class ReminderViewController: UITableViewController, ItemDetailViewControllerDel
             }
         }
         navigationController?.popViewController(animated: true)
+        saveReminderItems()
     }
     
     var items = [ReminderItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let item0 = ReminderItem()
-        item0.text = "item 1"
-        items.append(item0)
-        
-        let item1 = ReminderItem()
-        item1.text = "item 2"
-        item1.checked = true
-        items.append(item1)
+        loadReminderItems()
     }
 
     // MARK: TableView Delegate Methods
@@ -69,6 +63,7 @@ class ReminderViewController: UITableViewController, ItemDetailViewControllerDel
             item.toggleChecked()
             configureCheckMark(for: cell, at: indexPath)
             tableView.deselectRow(at: indexPath, animated: true)
+            saveReminderItems()
         }
     }
     
@@ -76,6 +71,7 @@ class ReminderViewController: UITableViewController, ItemDetailViewControllerDel
         items.remove(at: indexPath.row)
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        saveReminderItems()
     }
     
     func configureCheckMark(for cell: UITableViewCell, at indexPath: IndexPath) {
@@ -97,6 +93,40 @@ class ReminderViewController: UITableViewController, ItemDetailViewControllerDel
             controller.delegate = self
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 controller.itemToEdit = items[indexPath.row]
+            }
+        }
+    }
+    
+    // MARK: Document's Folder
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("ToDoApp.plist")
+    }
+    
+    func saveReminderItems() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(items)
+            try data.write(to: dataFilePath(), options: .atomic)
+            
+        } catch {
+            print("Error encoding item array: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadReminderItems() {
+        let path = dataFilePath()
+        
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            do {
+                items = try decoder.decode([ReminderItem].self, from: data)
+            } catch {
+                print("Error encoding item array: \(error.localizedDescription)")
             }
         }
     }
