@@ -15,6 +15,7 @@
 		37085926240D94DD0024FA2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37085924240D94DD0024FA2B /* LaunchScreen.storyboard */; };
 		3797F9C62412208600E5CDC4 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3797F9C52412208600E5CDC4 /* ItemDetailViewController.swift */; };
 		37A0727F241029B200A96654 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A0727E241029B200A96654 /* ReminderItem.swift */; };
+		37B54CDD24194E9F0091DE21 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B54CDC24194E9F0091DE21 /* AllListsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		37085927240D94DD0024FA2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3797F9C52412208600E5CDC4 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		37A0727E241029B200A96654 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
+		37B54CDC24194E9F0091DE21 /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				37085919240D94DA0024FA2B /* AppDelegate.swift */,
 				3708591B240D94DA0024FA2B /* SceneDelegate.swift */,
 				3708591D240D94DA0024FA2B /* ReminderViewController.swift */,
+				37B54CDC24194E9F0091DE21 /* AllListsViewController.swift */,
 				37A0727E241029B200A96654 /* ReminderItem.swift */,
 				3797F9C52412208600E5CDC4 /* ItemDetailViewController.swift */,
 				3708591F240D94DA0024FA2B /* Main.storyboard */,
@@ -146,6 +149,7 @@
 			files = (
 				3708591E240D94DA0024FA2B /* ReminderViewController.swift in Sources */,
 				3708591A240D94DA0024FA2B /* AppDelegate.swift in Sources */,
+				37B54CDD24194E9F0091DE21 /* AllListsViewController.swift in Sources */,
 				3797F9C62412208600E5CDC4 /* ItemDetailViewController.swift in Sources */,
 				37A0727F241029B200A96654 /* ReminderItem.swift in Sources */,
 				3708591C240D94DA0024FA2B /* SceneDelegate.swift in Sources */,

@@ -6,7 +6,29 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reminders-->
+        <!--All Lists-->
+        <scene sceneID="o88-th-6we">
+            <objects>
+                <tableViewController id="frc-rO-o5u" userLabel="All Lists" customClass="AllListsViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xfE-Rf-yCL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="frc-rO-o5u" id="8MH-j2-4qL"/>
+                            <outlet property="delegate" destination="frc-rO-o5u" id="zUf-gd-3RM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Reminder List" id="rop-3G-aCq"/>
+                    <connections>
+                        <segue destination="LAO-V1-Txi" kind="show" identifier="ShowReminder" id="f0a-Sg-W2y"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uVh-vd-6OI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1030" y="-629"/>
+        </scene>
+        <!--Name of Reminder List-->
         <scene sceneID="IoH-5d-6WD">
             <objects>
                 <tableViewController id="LAO-V1-Txi" customClass="ReminderViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +82,7 @@
                             <outlet property="delegate" destination="LAO-V1-Txi" id="5aD-NK-5SX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Reminders" id="T2a-rg-4cE">
+                    <navigationItem key="navigationItem" title="Name of Reminder List" largeTitleDisplayMode="never" id="T2a-rg-4cE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2rA-Oi-aqx">
                             <connections>
                                 <segue destination="9ak-b3-DTP" kind="show" identifier="AddItem" id="R6o-fh-drD"/>
@@ -148,7 +170,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="LAO-V1-Txi" kind="relationship" relationship="rootViewController" id="pbF-j7-G5i"/>
+                        <segue destination="frc-rO-o5u" kind="relationship" relationship="rootViewController" id="K3t-rl-Mqi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h15-v9-mlB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
