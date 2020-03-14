@@ -38,9 +38,11 @@ class ReminderViewController: UITableViewController, ItemDetailViewControllerDel
     }
     
     var items = [ReminderItem]()
+    var reminder: Reminder!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = reminder.name
         loadReminderItems()
     }
 
