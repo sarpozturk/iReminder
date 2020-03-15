@@ -8,8 +8,9 @@
 
 import UIKit
 
-class Reminder: NSObject {
+class Reminder: NSObject, Codable {
     var name = ""
+    var items = [ReminderItem]()
     
     init(name: String) {
         self.name = name

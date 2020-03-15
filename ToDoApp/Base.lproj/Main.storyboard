@@ -19,10 +19,16 @@
                             <outlet property="delegate" destination="frc-rO-o5u" id="zUf-gd-3RM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Reminder List" id="rop-3G-aCq"/>
+                    <navigationItem key="navigationItem" title="Reminder List" id="rop-3G-aCq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bQS-tS-1C1">
+                            <connections>
+                                <segue destination="34K-Y0-kz0" kind="show" identifier="AddReminder" id="n6T-om-G4A"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="LAO-V1-Txi" kind="show" identifier="ShowReminder" id="f0a-Sg-W2y"/>
-                        <segue destination="34K-Y0-kz0" kind="show" id="rX8-Pq-Zfa"/>
+                        <segue destination="34K-Y0-kz0" kind="show" identifier="EditReminder" id="rX8-Pq-Zfa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVh-vd-6OI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -32,7 +38,7 @@
         <!--Add Reminder-->
         <scene sceneID="wbw-bm-93P">
             <objects>
-                <tableViewController id="34K-Y0-kz0" customClass="ListDetailViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListDetailViewController" id="34K-Y0-kz0" customClass="ListDetailViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="2lG-do-0RH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,6 +52,23 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eDq-bl-P7T" id="Dht-ul-fg6">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the List" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-dH-aAX">
+                                                    <rect key="frame" x="20" y="4" width="374" height="34.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="34K-Y0-kz0" eventType="editingDidEndOnExit" id="EpB-tR-v8U"/>
+                                                        <outlet property="delegate" destination="34K-Y0-kz0" id="eH7-gv-w1a"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="7nA-dH-aAX" secondAttribute="trailing" constant="20" id="4Pf-cc-hyG"/>
+                                                <constraint firstAttribute="bottom" secondItem="7nA-dH-aAX" secondAttribute="bottom" constant="5.5" id="UnM-Tk-AGs"/>
+                                                <constraint firstItem="7nA-dH-aAX" firstAttribute="leading" secondItem="Dht-ul-fg6" secondAttribute="leading" constant="20" id="XZP-cI-jiw"/>
+                                                <constraint firstItem="7nA-dH-aAX" firstAttribute="top" secondItem="Dht-ul-fg6" secondAttribute="top" constant="4" id="yYU-ks-B4T"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -70,11 +93,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneBarButton" destination="DE2-gK-nEU" id="WnQ-9t-Y92"/>
+                        <outlet property="textField" destination="7nA-dH-aAX" id="qCC-QK-52r"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ft4-8Z-ok3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1883" y="-632"/>
+            <point key="canvasLocation" x="1882.608695652174" y="-632.14285714285711"/>
         </scene>
         <!--Name of Reminder List-->
         <scene sceneID="IoH-5d-6WD">
@@ -228,5 +252,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vlt-ph-GZI"/>
+        <segue reference="n6T-om-G4A"/>
     </inferredMetricsTieBreakers>
 </document>
