@@ -6,7 +6,101 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reminders-->
+        <!--All Lists-->
+        <scene sceneID="o88-th-6we">
+            <objects>
+                <tableViewController id="frc-rO-o5u" userLabel="All Lists" customClass="AllListsViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xfE-Rf-yCL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="frc-rO-o5u" id="8MH-j2-4qL"/>
+                            <outlet property="delegate" destination="frc-rO-o5u" id="zUf-gd-3RM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Reminder List" id="rop-3G-aCq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bQS-tS-1C1">
+                            <connections>
+                                <segue destination="34K-Y0-kz0" kind="show" identifier="AddReminder" id="n6T-om-G4A"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="LAO-V1-Txi" kind="show" identifier="ShowReminder" id="f0a-Sg-W2y"/>
+                        <segue destination="34K-Y0-kz0" kind="show" identifier="EditReminder" id="rX8-Pq-Zfa"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uVh-vd-6OI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1030" y="-629"/>
+        </scene>
+        <!--Add Reminder-->
+        <scene sceneID="wbw-bm-93P">
+            <objects>
+                <tableViewController storyboardIdentifier="ListDetailViewController" id="34K-Y0-kz0" customClass="ListDetailViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="2lG-do-0RH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection id="ZLN-ME-ZkM">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eDq-bl-P7T">
+                                        <rect key="frame" x="0.0" y="18" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eDq-bl-P7T" id="Dht-ul-fg6">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the List" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-dH-aAX">
+                                                    <rect key="frame" x="20" y="4" width="374" height="34.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="34K-Y0-kz0" eventType="editingDidEndOnExit" id="EpB-tR-v8U"/>
+                                                        <outlet property="delegate" destination="34K-Y0-kz0" id="eH7-gv-w1a"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="7nA-dH-aAX" secondAttribute="trailing" constant="20" id="4Pf-cc-hyG"/>
+                                                <constraint firstAttribute="bottom" secondItem="7nA-dH-aAX" secondAttribute="bottom" constant="5.5" id="UnM-Tk-AGs"/>
+                                                <constraint firstItem="7nA-dH-aAX" firstAttribute="leading" secondItem="Dht-ul-fg6" secondAttribute="leading" constant="20" id="XZP-cI-jiw"/>
+                                                <constraint firstItem="7nA-dH-aAX" firstAttribute="top" secondItem="Dht-ul-fg6" secondAttribute="top" constant="4" id="yYU-ks-B4T"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="34K-Y0-kz0" id="blW-TZ-I9x"/>
+                            <outlet property="delegate" destination="34K-Y0-kz0" id="Ll1-rt-Kni"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Reminder" largeTitleDisplayMode="never" id="fAt-Dg-sn8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="StG-mf-cIs">
+                            <connections>
+                                <action selector="cancel" destination="34K-Y0-kz0" id="moN-FO-hv0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="DE2-gK-nEU">
+                            <connections>
+                                <action selector="done" destination="34K-Y0-kz0" id="oeY-Rd-7Jt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneBarButton" destination="DE2-gK-nEU" id="WnQ-9t-Y92"/>
+                        <outlet property="textField" destination="7nA-dH-aAX" id="qCC-QK-52r"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ft4-8Z-ok3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1882.608695652174" y="-632.14285714285711"/>
+        </scene>
+        <!--Name of Reminder List-->
         <scene sceneID="IoH-5d-6WD">
             <objects>
                 <tableViewController id="LAO-V1-Txi" customClass="ReminderViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +154,7 @@
                             <outlet property="delegate" destination="LAO-V1-Txi" id="5aD-NK-5SX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Reminders" id="T2a-rg-4cE">
+                    <navigationItem key="navigationItem" title="Name of Reminder List" largeTitleDisplayMode="never" id="T2a-rg-4cE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2rA-Oi-aqx">
                             <connections>
                                 <segue destination="9ak-b3-DTP" kind="show" identifier="AddItem" id="R6o-fh-drD"/>
@@ -148,7 +242,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="LAO-V1-Txi" kind="relationship" relationship="rootViewController" id="pbF-j7-G5i"/>
+                        <segue destination="frc-rO-o5u" kind="relationship" relationship="rootViewController" id="K3t-rl-Mqi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h15-v9-mlB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -158,5 +252,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vlt-ph-GZI"/>
+        <segue reference="n6T-om-G4A"/>
     </inferredMetricsTieBreakers>
 </document>
