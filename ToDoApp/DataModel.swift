@@ -11,8 +11,19 @@ import Foundation
 class DataModel {
     var lists = [Reminder]()
     
+    var selectedReminderIndex: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "ReminderIndex")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "ReminderIndex")
+        }
+    }
+    
     init() {
         loadReminders()
+        registerInitDefault()
+        handleFirstTime()
     }
     
     // MARK: - Saving Data
@@ -46,6 +57,22 @@ class DataModel {
             } catch {
                 print("Error encoding item array: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    func registerInitDefault() {
+        let dictionary = ["ReminderIndex": -1, "isFirstTime": true] as [String : Any]
+        UserDefaults.standard.register(defaults: dictionary)
+    }
+    
+    func handleFirstTime() {
+        let userDefaults = UserDefaults.standard
+        let firstTime = userDefaults.bool(forKey: "isFirstTime")
+        if firstTime {
+            let reminder = Reminder(name: "List")
+            lists.append(reminder)
+            selectedReminderIndex = 0
+            userDefaults.set(false, forKey: "isFirstTime")
         }
     }
 }

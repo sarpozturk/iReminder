@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
     func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
@@ -42,6 +42,16 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.delegate = self
+        let index = dataModel.selectedReminderIndex
+        if index >= 0 && index < dataModel.lists.count {
+            let reminder = dataModel.lists[index]
+            performSegue(withIdentifier: "ShowReminder", sender: reminder)
+        }
+    }
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataModel.lists.count
@@ -71,6 +81,14 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let reminder = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: "ShowReminder", sender: reminder)
+        dataModel.selectedReminderIndex = indexPath.row
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        // back button is tapped
+        if viewController === self {
+            dataModel.selectedReminderIndex = -1
+        }
     }
     
     // Passing the data happens here
