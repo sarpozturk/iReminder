@@ -26,6 +26,12 @@ class DataModel {
         handleFirstTime()
     }
     
+    func sortReminders() {
+        lists.sort(by: {list1, list2 in
+            return list1.name.localizedStandardCompare(list2.name) == .orderedAscending
+        })
+    }
+    
     // MARK: - Saving Data
     func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -54,6 +60,7 @@ class DataModel {
             let decoder = PropertyListDecoder()
             do {
                 lists = try decoder.decode([Reminder].self, from: data)
+                sortReminders()
             } catch {
                 print("Error encoding item array: \(error.localizedDescription)")
             }

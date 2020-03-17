@@ -14,22 +14,15 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding reminder: Reminder) {
-        let item = reminder
-        let newRowIndex = dataModel.lists.count
-        dataModel.lists.append(item)
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
+        dataModel.lists.append(reminder)
+        dataModel.sortReminders()
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditing reminder: Reminder) {
-        if let index = dataModel.lists.index(of: reminder) {
-            let indexPath = IndexPath(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) {
-                cell.textLabel?.text = reminder.name
-            }
-        }
+        dataModel.sortReminders()
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
@@ -39,7 +32,12 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,8 +56,19 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel?.text = dataModel.lists[indexPath.row].name
+        let cell: UITableViewCell!
+        if let c = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) {
+            cell = c
+        } else {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
+        }
+        cell.textLabel!.text = dataModel.lists[indexPath.row].name
+        if dataModel.lists[indexPath.row].items.count == 0 {
+            cell.detailTextLabel!.text = "(No item)"
+        } else {
+            let count = dataModel.lists[indexPath.row].countUncheckedReminderItems()
+            cell.detailTextLabel!.text = count == 0 ? "All done!" : "\(count) Remaining"
+        }
         cell.accessoryType = .detailDisclosureButton
         return cell
     }

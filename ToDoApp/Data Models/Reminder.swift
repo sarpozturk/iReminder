@@ -16,4 +16,10 @@ class Reminder: NSObject, Codable {
         self.name = name
         super.init()
     }
+    
+    func countUncheckedReminderItems() -> Int {
+        return items.reduce(0) { count, item
+            in count + (item.checked ? 0 : 1)
+        }
+    }
 }
