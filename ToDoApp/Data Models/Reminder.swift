@@ -11,6 +11,7 @@ import UIKit
 class Reminder: NSObject, Codable {
     var name = ""
     var items = [ReminderItem]()
+    var iconName = "No Icon"
     
     init(name: String) {
         self.name = name

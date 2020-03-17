@@ -70,6 +70,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
             cell.detailTextLabel!.text = count == 0 ? "All done!" : "\(count) Remaining"
         }
         cell.accessoryType = .detailDisclosureButton
+        cell.imageView?.image = UIImage(named: dataModel.lists[indexPath.row].iconName)
         return cell
     }
     

@@ -19,6 +19,7 @@
 		37A0727F241029B200A96654 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A0727E241029B200A96654 /* ReminderItem.swift */; };
 		37B54CDD24194E9F0091DE21 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B54CDC24194E9F0091DE21 /* AllListsViewController.swift */; };
 		37B54CDF241956270091DE21 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B54CDE241956270091DE21 /* Reminder.swift */; };
+		516035422420E49900B0B41D /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516035412420E49900B0B41D /* IconPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		37A0727E241029B200A96654 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
 		37B54CDC24194E9F0091DE21 /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		37B54CDE241956270091DE21 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		516035412420E49900B0B41D /* IconPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				37B54CDC24194E9F0091DE21 /* AllListsViewController.swift */,
 				3793F303241CE3F900035DDE /* ListDetailViewController.swift */,
 				3708591D240D94DA0024FA2B /* ReminderViewController.swift */,
+				516035412420E49900B0B41D /* IconPickerViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				3708591E240D94DA0024FA2B /* ReminderViewController.swift in Sources */,
 				37B54CDF241956270091DE21 /* Reminder.swift in Sources */,
 				3708591A240D94DA0024FA2B /* AppDelegate.swift in Sources */,
+				516035422420E49900B0B41D /* IconPickerViewController.swift in Sources */,
 				37B54CDD24194E9F0091DE21 /* AllListsViewController.swift in Sources */,
 				3797F9C62412208600E5CDC4 /* ItemDetailViewController.swift in Sources */,
 				37A0727F241029B200A96654 /* ReminderItem.swift in Sources */,
