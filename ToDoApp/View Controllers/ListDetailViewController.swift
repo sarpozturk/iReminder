@@ -58,8 +58,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
             reminder.iconName = iconName
             delegate?.listDetailViewController(self, didFinishEditing: reminder)
         } else {
-            let reminder = Reminder(name: textField.text!)
-            reminder.iconName = iconName
+            let reminder = Reminder(name: textField.text!, iconName: iconName)
             delegate?.listDetailViewController(self, didFinishAdding: reminder)
         }
     }

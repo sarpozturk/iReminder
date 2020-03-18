@@ -11,10 +11,11 @@ import UIKit
 class Reminder: NSObject, Codable {
     var name = ""
     var items = [ReminderItem]()
-    var iconName = "No Icon"
+    var iconName: String
     
-    init(name: String) {
+    init(name: String, iconName: String = "No Icon") {
         self.name = name
+        self.iconName = iconName
         super.init()
     }
     
