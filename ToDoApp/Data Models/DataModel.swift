@@ -32,6 +32,13 @@ class DataModel {
         })
     }
     
+    class func generateReminderItemID() -> Int {
+        let userdefaults = UserDefaults.standard
+        let itemID = userdefaults.integer(forKey: "ReminderItem")
+        userdefaults.set(itemID + 1, forKey: "ReminderItem")
+        return itemID
+    }
+    
     // MARK: - Saving Data
     func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

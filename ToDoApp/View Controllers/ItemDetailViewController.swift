@@ -19,8 +19,11 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var shouldRemindSwitch: UISwitch!
+    @IBOutlet weak var dueDateLabel: UILabel!
     
     var itemToEdit: ReminderItem?
+    var dueDate = Date()
     
     weak var delegate: ItemDetailViewControllerDelegate?
     
@@ -33,7 +36,10 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             navigationItem.title = "Edit Item"
             textField.text = itemToEdit.text
             doneButton.isEnabled = true
+            shouldRemindSwitch.isOn = itemToEdit.shouldRemind
+            dueDate = itemToEdit.dueDate
         }
+        updateDueDateLabel()
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -62,11 +68,23 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func done() {
         if let item = itemToEdit {
             item.text = textField.text!
+            item.dueDate = dueDate
+            item.shouldRemind = shouldRemindSwitch.isOn
             delegate?.itemDetailViewController(self, didFinishEditing: item)
         } else {
             let item = ReminderItem()
             item.text = textField.text!
+            item.dueDate = dueDate
+            item.shouldRemind = shouldRemindSwitch.isOn
             delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
+    }
+    
+    // MARK: Date
+    func updateDueDateLabel() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        dueDateLabel.text = dateFormatter.string(from: dueDate)
     }
 }

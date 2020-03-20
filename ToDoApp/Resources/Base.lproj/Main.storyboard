@@ -280,6 +280,61 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="I1N-Qh-P0Q">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="8EV-tK-JsA">
+                                        <rect key="frame" x="0.0" y="97.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8EV-tK-JsA" id="n2S-dr-fuh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONR-rJ-wKw">
+                                                    <rect key="frame" x="20" y="11.5" width="86" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="is7-cE-Oe0">
+                                                    <rect key="frame" x="343" y="6" width="51" height="31.5"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ONR-rJ-wKw" firstAttribute="leading" secondItem="n2S-dr-fuh" secondAttribute="leadingMargin" id="0VY-lv-WKi"/>
+                                                <constraint firstItem="is7-cE-Oe0" firstAttribute="top" secondItem="n2S-dr-fuh" secondAttribute="top" constant="6" id="0rS-YI-VjE"/>
+                                                <constraint firstItem="is7-cE-Oe0" firstAttribute="leading" secondItem="ONR-rJ-wKw" secondAttribute="trailing" constant="237" id="G6K-x8-xUI"/>
+                                                <constraint firstItem="ONR-rJ-wKw" firstAttribute="centerY" secondItem="is7-cE-Oe0" secondAttribute="centerY" id="a4q-wn-6SA"/>
+                                                <constraint firstAttribute="bottom" secondItem="is7-cE-Oe0" secondAttribute="bottom" constant="6.5" id="wj5-F5-jID"/>
+                                                <constraint firstAttribute="trailing" secondItem="is7-cE-Oe0" secondAttribute="trailing" constant="22" id="zuq-Lf-dvR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="z6p-Sc-N28" detailTextLabel="iQQ-u7-QHS" style="IBUITableViewCellStyleValue1" id="NRL-4G-vVo">
+                                        <rect key="frame" x="0.0" y="141" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NRL-4G-vVo" id="eKg-CB-mO9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z6p-Sc-N28">
+                                                    <rect key="frame" x="20" y="12" width="71.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iQQ-u7-QHS">
+                                                    <rect key="frame" x="350" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="9ak-b3-DTP" id="08C-iS-PMe"/>
@@ -301,6 +356,8 @@
                     <connections>
                         <outlet property="cancelButton" destination="60L-6J-7Bx" id="Vtq-dT-dPq"/>
                         <outlet property="doneButton" destination="sq6-cl-oLW" id="NTv-UJ-iXS"/>
+                        <outlet property="dueDateLabel" destination="iQQ-u7-QHS" id="k6B-Wv-biK"/>
+                        <outlet property="shouldRemindSwitch" destination="is7-cE-Oe0" id="CYH-dK-Kj1"/>
                         <outlet property="textField" destination="MaL-cQ-oCF" id="RSJ-jt-FHK"/>
                     </connections>
                 </tableViewController>
