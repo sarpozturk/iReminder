@@ -21,10 +21,12 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var shouldRemindSwitch: UISwitch!
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var datePickerCell: UITableViewCell!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     var itemToEdit: ReminderItem?
     var dueDate = Date()
-    
+    var isDatePickerVisible = false
     weak var delegate: ItemDetailViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -43,7 +45,55 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+        if indexPath.section == 1 && indexPath.row == 1 {
+            return indexPath
+        } else {
+            return nil
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 2 && indexPath.section == 1 {
+            return datePickerCell
+        } else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 1 && isDatePickerVisible {
+            return 3
+        } else {
+            return super.tableView(tableView, numberOfRowsInSection: section)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 && indexPath.row == 2 {
+            return 217
+        } else {
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        textField.resignFirstResponder()
+        if indexPath.section == 1 && indexPath.row == 1 {
+            if !isDatePickerVisible {
+                showDatePicker()
+            } else {
+                hideDatePicker()
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        var newIndexPath = indexPath
+        if indexPath.section == 1 && indexPath.row == 2 {
+            newIndexPath = IndexPath(row: 0, section: indexPath.section)
+        }
+        return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
     }
     
     // MARK: Textfield Delegate Method
@@ -60,6 +110,10 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        hideDatePicker()
+    }
+    
     // MARK: Actions
     @IBAction func cancel() {
         delegate?.itemDetailViewControllerDidCancel(self)
@@ -70,12 +124,14 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             item.text = textField.text!
             item.dueDate = dueDate
             item.shouldRemind = shouldRemindSwitch.isOn
+            item.scheduleNotification()
             delegate?.itemDetailViewController(self, didFinishEditing: item)
         } else {
             let item = ReminderItem()
             item.text = textField.text!
             item.dueDate = dueDate
             item.shouldRemind = shouldRemindSwitch.isOn
+            item.scheduleNotification()
             delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
     }
@@ -86,5 +142,37 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         dueDateLabel.text = dateFormatter.string(from: dueDate)
+    }
+    
+    func showDatePicker() {
+        isDatePickerVisible = true
+        let datePickerIndexPath = IndexPath(row: 2, section: 1)
+        tableView.insertRows(at: [datePickerIndexPath], with: .fade)
+        datePicker.setDate(dueDate, animated: false)
+        dueDateLabel.textColor = dueDateLabel.tintColor
+    }
+    
+    func hideDatePicker() {
+        if isDatePickerVisible {
+            isDatePickerVisible = false
+            let datePickerIndex = IndexPath(row: 2, section: 1)
+            tableView.deleteRows(at: [datePickerIndex], with: .fade)
+            dueDateLabel.textColor = UIColor.black
+        }
+    }
+    
+    @IBAction func toggleShouldRemind(_ switchControl: UISwitch) {
+        textField.resignFirstResponder()
+        if switchControl.isOn {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound]) {
+                granted, error in
+            }
+        }
+    }
+    
+    @IBAction func dateChanged(_ datePicker: UIDatePicker) {
+        dueDate = datePicker.date
+        updateDueDateLabel()
     }
 }

@@ -297,6 +297,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="is7-cE-Oe0">
                                                     <rect key="frame" x="343" y="6" width="51" height="31.5"/>
+                                                    <connections>
+                                                        <action selector="toggleShouldRemind:" destination="9ak-b3-DTP" eventType="valueChanged" id="XeD-OF-2p1"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -355,6 +358,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="60L-6J-7Bx" id="Vtq-dT-dPq"/>
+                        <outlet property="datePicker" destination="2I0-06-Guz" id="7VL-qb-5Eu"/>
+                        <outlet property="datePickerCell" destination="gsT-aO-lV9" id="Ja5-eH-NzK"/>
                         <outlet property="doneButton" destination="sq6-cl-oLW" id="NTv-UJ-iXS"/>
                         <outlet property="dueDateLabel" destination="iQQ-u7-QHS" id="k6B-Wv-biK"/>
                         <outlet property="shouldRemindSwitch" destination="is7-cE-Oe0" id="CYH-dK-Kj1"/>
@@ -362,6 +367,28 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="juE-BK-VI5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="gsT-aO-lV9">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="217"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gsT-aO-lV9" id="64Z-Ty-inC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="217"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="2I0-06-Guz">
+                                <rect key="frame" x="20" y="1" width="374" height="196"/>
+                                <connections>
+                                    <action selector="dateChanged:" destination="9ak-b3-DTP" eventType="valueChanged" id="cSh-De-jGI"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2I0-06-Guz" firstAttribute="top" secondItem="64Z-Ty-inC" secondAttribute="top" constant="1" id="7ay-fY-4L2"/>
+                            <constraint firstAttribute="trailing" secondItem="2I0-06-Guz" secondAttribute="trailing" constant="20" symbolic="YES" id="8vc-qa-YUw"/>
+                            <constraint firstAttribute="bottom" secondItem="2I0-06-Guz" secondAttribute="bottom" constant="20" symbolic="YES" id="pBN-fa-uZN"/>
+                            <constraint firstItem="2I0-06-Guz" firstAttribute="leading" secondItem="64Z-Ty-inC" secondAttribute="leading" constant="20" symbolic="YES" id="vgV-iG-3cw"/>
+                        </constraints>
+                    </tableViewCellContentView>
+                </tableViewCell>
             </objects>
             <point key="canvasLocation" x="1882.608695652174" y="50.892857142857139"/>
         </scene>
